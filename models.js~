@@ -1,0 +1,5 @@
+/**
+* Models
+*/
+Messages = new Meteor.Collection('messages');
+PocketAuth = new Meteor.Collection('pocketAuths');

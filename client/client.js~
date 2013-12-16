@@ -1,0 +1,107 @@
+/**
+* Init
+*/
+
+
+Meteor.startup(function() {
+    Accounts.ui.config({
+       requestPermissions: {},
+       requestOfflineToken: {},
+       passwordSignupFields: 'USERNAME_ONLY'
+   });
+    Meteor.subscribe("userData");
+  });
+
+
+/**
+* Logic
+*/
+
+var clientAuthApp = function(){
+     Meteor.call('authPocket', function(error, result){
+            var url =  'https://getpocket.com/auth/authorize?request_token='+re\
+sult+'&redirect_uri=h\
+ttp://ec2-54-201-47-37.us-west-2.compute.amazonaws.com:3000/';
+
+            var win = window.open(url);
+	  
+        });
+}
+
+/**
+* Templates
+*/
+
+Template.users.pocketAuthorized = function() {
+    if(Meteor.user()){
+	var pocket = Meteor.user().pocket;
+	if (pocket.isCode == 1) return true;
+    }
+    return false;
+}
+
+Template.users.events = {
+    'click #connectPocket' : function(event){
+	//check current value of pocket entry
+	if(Meteor.user()){
+	    var pocket = Meteor.user().pocket;
+
+	    //if no app authorization, authorize app
+	    if(pocket.isCode == 0 && pocket.accessCode == null){
+		//callback user authorization
+		//call authorized event @server
+		
+	    }	
+	    
+	    //else if no user authorization -> authorize user
+	    else if(pocket.isCode == 0 && !pocket.accessCode == null){
+	       //call authorized event @server
+
+	    }
+	
+	    //else if return ture & call authorized event @server
+	    else if(pocket.isCode == 1){
+		return true;
+	    }
+	    //throw exception
+	    return false;
+	    
+	}    
+   }
+    
+}
+
+Template.users.events = {
+    'click #tester' : function(event){
+	/*var accessToken = null;
+	Meteor.call('getAccessToken', function(error, result){
+	    if(result.accessToken == null){
+		//run authorization
+		// update server authorization call to create access token persistance	   
+		//final put token into user file
+	    }
+	    else{ accessToken = result.accessToken; }
+	    console.log(accessToken);
+	});*/
+	console.log(Meteor.user().pocket);
+    }
+}
+
+Template.input.events = {
+    'keydown input#message' : function(event){
+	if (event.which == 13){
+	    var name = 'An';
+	    var message = document.getElementById('message');
+	}
+	if (message.value != ''){
+	    Messages.insert({
+		name: name,
+		message: message.value,
+		time: Date.now(),
+	    });
+	    document.getElementById('message').value = '';
+            message.value = '';
+	}
+}
+
+}

@@ -1,0 +1,37 @@
+<head>
+	<title>Pocket statistics</title>
+</head>
+
+<body>
+  {{loginButtons}}
+  {{#if currentUser}}
+    {{> users}}
+  {{/if}}
+</body>
+
+<template name="users">
+  <p>Welcome</p>
+  <p>Pocket Authorization: {{pocketAuthorized}} 
+  {{#if pocketAuthorized}}
+    {{> authorizedPocket}}
+  {{else}}
+	{{> unAuthorizedPocket}}
+  {{/if}}
+ </template>
+
+<template name="authorizedPocket">
+	<button type="button" id="disconnectPocket"> Disconnect from Pocket </button> 
+</template>
+
+<template name="unAuthorizedPocket">
+	<button type="button" id="connectToPocket"> Connect to Pocket </button> 
+</template>
+
+<template name="messages">
+  {{#each messages}}
+    <strong>{{name}}:</strong> {{message}}<br>
+  {{/each}}
+</template>
+<template name="input">
+  <p>Message: <input type="text" id="message"></p>
+</template>

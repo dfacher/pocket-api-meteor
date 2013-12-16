@@ -1,0 +1,26 @@
+<head>
+	<title>Pocket statistics</title>
+</head>
+
+<body>
+  {{loginButtons}}
+  {{#if currentUser}}
+    {{> users}}
+  {{/if}}
+</body>
+
+<template name="users">
+  <p>Welcome {{userId}} </p>
+  <p>Pocket Authorization: <button type="button" id="connectPocket">Connect</button> </p>
+  <p> <button type="button" id="tester"> Test </button></p> 
+
+</template>
+
+<template name="messages">
+  {{#each messages}}
+    <strong>{{name}}:</strong> {{message}}<br>
+  {{/each}}
+</template>
+<template name="input">
+  <p>Message: <input type="text" id="message"></p>
+</template>
