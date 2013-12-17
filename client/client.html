@@ -3,35 +3,28 @@
 </head>
 
 <body>
-  {{loginButtons}}
-  {{#if currentUser}}
-    {{> users}}
-  {{/if}}
+   
+  <div class="container">
+		{{> navbar}}
+		<div id="main" class="row-fluid">
+			{{renderPage}}
+		</div>
+	</div>
+    
 </body>
 
-<template name="users">
-  <p>Welcome</p>
-  <p>Pocket Authorization: {{pocketAuthorized}} 
-  {{#if pocketAuthorized}}
-    {{> authorizedPocket}}
-  {{else}}
-	{{> unAuthorizedPocket}}
-  {{/if}}
- </template>
-
-<template name="authorizedPocket">
-	<button type="button" id="disconnectPocket"> Disconnect from Pocket </button> 
+<template name="home">
+	
+	{{> readList}}
 </template>
 
-<template name="unAuthorizedPocket">
-	<button type="button" id="connectToPocket"> Connect to Pocket </button> 
+<template name="auth">
+  <h1>Pocket authorized. You can close this window now</h1>
 </template>
 
-<template name="messages">
-  {{#each messages}}
-    <strong>{{name}}:</strong> {{message}}<br>
-  {{/each}}
+<template name="req">
+  <h1>Redirecting to pocket for authentication...</h1>
 </template>
-<template name="input">
-  <p>Message: <input type="text" id="message"></p>
-</template>
+
+
+

@@ -1,8 +1,7 @@
 
 //startup
  Meteor.startup(function () {
-	var consumer_key = '17580-7de40cb3f846864f61048d5d';
-	
+		
  });
 
 // Account handling
@@ -29,7 +28,6 @@ Meteor.methods({
     pocketCredentials: function() {
         return {
             consumer_key : '17580-7de40cb3f846864f61048d5d',
-            redirect_uri : 'http://ec2-54-200-192-192.us-west-2.compute.amazonaws.com:3000/auth'
         }
     },
 	
@@ -41,7 +39,7 @@ Meteor.methods({
 	},
 
     
-    authPocketApp: function() {
+    authPocketApp: function(redirect_uri) {
 		console.log('Pocket: app auth started');
 		this.unblock();
 		
@@ -52,7 +50,7 @@ Meteor.methods({
 		
 		if(Meteor.user()){
 			var authUrl = 'https://getpocket.com/v3/oauth/request';
-			var response = HTTP.call('POST', authUrl, {params: {'consumer_key': Meteor.call('pocketCredentials').consumer_key, 'redirect_uri': Meteor.call('pocketCredentials').redirect_uri}});
+			var response = HTTP.call('POST', authUrl, {params: {'consumer_key': Meteor.call('pocketCredentials').consumer_key, 'redirect_uri': redirect_uri}});
 			var reqToken = '';
 			
 			if(response.statusCode==200){

@@ -1,0 +1,19 @@
+<template name="navbar">
+	<header class="navbar">
+				<div class="navbar-inner">
+					<a class="brand" href="/">BookAday</a>
+					<p class="navbar-text navbar-right">{{> pocketStatus}}</p>
+					<p class="navbar-text navbar-right">{{loginButtons}}</p>
+				</div>
+	</header>
+</template>
+
+<template name="pocketStatus">
+	{{#if currentUser}} 
+	  {{#if pocketAuthorized}}
+		<button type="button" class="btn btn-success btn-xs" id="disconnectPocket">Connected</button>
+	  {{else}}
+		<button type="button" class="btn btn-danger btn-xs" id="connectToPocket" > Connect </button>
+	  {{/if}}
+	{{/if}}	
+</template>
