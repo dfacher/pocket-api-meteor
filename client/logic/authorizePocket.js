@@ -52,6 +52,7 @@ Template.req.rendered = function(){
 
 Template.pocketStatus.events = {
     'click #disconnectPocket' : function(event){
+		//currently do nothing
 		Meteor.call('resetPocketCredentials', function(error, result){
 			console.log('Result: '+result);
 			if(result==true){

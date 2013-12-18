@@ -1,10 +1,17 @@
 <template name="navbar">
 	<header class="navbar">
-				<div class="navbar-inner">
-					<a class="brand" href="/">BookAday</a>
-					<p class="navbar-text navbar-right">{{> pocketStatus}}</p>
-					<p class="navbar-text navbar-right">{{loginButtons}}</p>
-				</div>
+		<div class="navbar-inner">
+			<a class="brand" href="/">BookAday</a>
+			<ul class="nav navbar-nav ">
+				
+				{{> pocketStatus}}
+				{{#if currentUser}}
+					<span class="navbar-text">Signed in as {{loginButtons}} </span>
+				{{else}}
+					{{loginButtons}}
+				{{/if}}	
+			</ul>
+		</div>
 	</header>
 </template>
 

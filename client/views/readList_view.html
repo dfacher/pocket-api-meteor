@@ -1,7 +1,10 @@
 <template name="readList">
 	<div class="articles">
-		{{#each articles}}
-			{{> postArticle}}
-		{{/each}}
+		{{#if currentUser}} 
+			<button type="button" class="btn btn-xs" id="fetchCallPocket">Fetch</button>
+				{{#each articles}}
+					{{> postArticle}}
+				{{/each}}
+		{{/if}}
 	</div>
 </template>
